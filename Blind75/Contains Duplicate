@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_map<int, int> checkDuplicate;
+        for (int i=0; i < nums.size(); i++){
+            int j = nums[i];
+            if (checkDuplicate[j] != 0){
+                return true;
+            }
+            else{
+                checkDuplicate[j] += 1;
+            }
+        }
+        return false;
+    }
+};
+
+//Runtime, 150ms, Beats 57.67%of users with C++
+//Memory, 69.50mb, Beats 60.28%of users with C++
