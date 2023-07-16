@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> words;
+        for (int i = 0; i < strs.size(); i++){
+            string s = strs[i];
+            sort(strs[i].begin(), strs[i].end());
+            words[strs[i]].push_back(s);
+        }
+        vector<vector<string>> answer;
+        for (auto i: words){
+            answer.push_back(i.second);
+        }
+        return answer;
+    }
+};
+
+//Runtime 32ms Beats 90.18%of users with C++
+//Memory 20.56mb Beats 62.78%of users with C++
