@@ -1,1 +1,23 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> mp;
+        for (int i = 0; i < nums.size(); i++){
+            mp[nums[i]] += 1;
+        }
+        priority_queue<pair<int, int>> pq;
+        for (auto i: mp){
+            pq.push({i.second,i.first});
+        }
+        vector<int> answer;
+        while (k>0){
+            answer.push_back(pq.top().second);
+            pq.pop();
+            k--;
+        }
+        return answer;
+    }
+};
 
+//Runtime 12ms Beats 95.69%of users with C++
+//Memory 13.60mb Beats 83.02%of users with C++
