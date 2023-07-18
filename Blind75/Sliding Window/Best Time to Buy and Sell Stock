@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int left = 0;
+        int right = 1;
+        int maxDiff = 0;
+        while (right < prices.size()){
+                int diff = prices[right] - prices[left];
+                if (diff > maxDiff){
+                    maxDiff = diff;
+                }
+                if (diff < 0){
+                    left++;
+                    if (left = right){
+                        right++;
+                    }
+                } else {
+                    right++;
+                }
+        }
+        return maxDiff;
+    }
+};
+
+//Runtime 130ms Beats 94.30%of users with C++
+//Memory 93.26mb Beats 72.53%of users with C++
