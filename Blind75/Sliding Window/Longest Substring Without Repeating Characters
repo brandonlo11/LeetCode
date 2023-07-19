@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int left = 0;
+        int right = 0;
+        int maxCount = 0;
+        int count = 0;
+        unordered_set<char> seen;
+        while (right < s.size()){
+            if (seen.count(s[right]) == 0){
+                seen.insert(s[right]);
+                count++;
+                right++;
+                if (maxCount < count){
+                    maxCount = count;
+                }
+            } else {
+                seen.erase(s[left]);
+                left++;
+                count--;
+            }
+
+        }
+        return maxCount;
+    }
+};
+
+//Runtime 34ms Beats 34.56%of users with C++
+//Memory 10.76mb Beats 30.53%of users with C++
