@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int left = 0;
+        int right = 0;
+        int window = 1;
+        int subString = 0;
+        unordered_map<char, int> count;
+        count[s[0]]++;
+        while (right < s.size()){
+            int max = 0;
+            for (auto i: count){
+                if (i.second > max){
+                    max = i.second;
+                }
+            }
+            if ((window - max) <= k ){
+                if (window > subString){
+                    subString = window;
+                }
+                right++;
+                window++;
+                count[s[right]]++;
+            } else {
+                count[s[left]]--;
+                left++;
+                window--;
+            }
+        }
+        return subString;
+    }
+};
+
+//Runtime 35ms Beats 14.39%of users with C++
+//Memory 7.03mb Beats 33.39%of users with C++
