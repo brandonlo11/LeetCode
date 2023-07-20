@@ -1,0 +1,47 @@
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        //hash map for the target string
+        unordered_map<char, int> target;
+        int goal = t.size();
+        for (int i=0;i<t.size();i++){
+            target[t[i]]++;
+        }
+
+        int left = 0;
+        int right = 0;
+        int count = 0;
+        int window = 0;
+        int a = 0;
+        int b = 0;
+        unordered_map<char, int> check;
+        while ((right < s.size()) && (left < s.size())){
+            if (count == goal){
+                if((right-left+1) > window){
+                    window = right-left+1;
+                    a = left;
+                    b = right;
+                }
+                if (target[s[left]] > 0){
+                    check[s[left]]--;
+                    if (target[s[left]] >= check[s[left]]){
+                        count--;
+                    }
+                }
+                left++;
+
+            } else if (target[s[right]] > 0){
+                check[s[right]]++;
+                if (target[s[right]] > check[s[right]]){
+                    count++;
+                }
+                right++;
+            } else{
+                right++;
+            }
+        }
+        string answer = s.substr(a, (b-a+1));
+        return answer;
+
+    }
+};
