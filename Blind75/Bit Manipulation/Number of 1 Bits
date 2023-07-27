@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int hammingWeight(uint32_t n) {
+        int ans = 0;
+        while (n){
+            ans += n % 2;
+            n >>= 1;
+        }
+        return ans;
+    }
+};
+
+//Runtime -ms Beats 100.00% of users with C++
+//Memory 5.95mb Beats 68.58%of users with C++
