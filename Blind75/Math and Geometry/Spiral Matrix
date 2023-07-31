@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int left = 0;
+        int top = 0;
+        int right = matrix[0].size() - 1;
+        int bottom = matrix.size() - 1;
+        vector<int> answer;
+        while ((left <= right) && (top <= bottom)){
+            for (int i = left; i <= right; i++){
+                answer.push_back(matrix[top][i]);
+            }
+            top++;
+            for (int j = top; j <= bottom; j++){
+                answer.push_back(matrix[j][right]);
+            }
+            right--;
+            if ((left > right) || (top > bottom)){
+                break;
+            }
+            for (int k = right; k >= left; k--){
+                answer.push_back(matrix[bottom][k]);
+            }
+            bottom--;
+            for (int z = bottom; z >= top; z--){
+                answer.push_back(matrix[z][left]);
+            }
+            left++;
+        }
+        return answer;
+    }
+};
+
+//Runtime -ms Beats 100.00% of users with C++
+//Memory 6.85mb Beats 60.36% of users with C++
